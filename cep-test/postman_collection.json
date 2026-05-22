@@ -1,0 +1,83 @@
+{
+  "info": {
+    "name": "API Busca CEP",
+    "description": "Coleção com casos de teste para a API pública de consulta de CEP.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "CT01 - Fluxo básico - CEP válido",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://cdn.apicep.com/file/apicep/06233-030.json",
+          "protocol": "https",
+          "host": ["cdn", "apicep", "com"],
+          "path": ["file", "apicep", "06233-030.json"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Retorno JSON válido', function () { var json = pm.response.json(); pm.expect(json.code).to.eql('06233-030'); pm.expect(json.state).to.eql('SP'); pm.expect(json.city).to.eql('Osasco'); pm.expect(json.address).to.eql('Rua Paula Rodrigues'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CT02 - Fluxo alternativo - outro CEP válido",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://cdn.apicep.com/file/apicep/01001-000.json",
+          "protocol": "https",
+          "host": ["cdn", "apicep", "com"],
+          "path": ["file", "apicep", "01001-000.json"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Retorno JSON válido', function () { var json = pm.response.json(); pm.expect(json.code).to.eql('01001-000'); pm.expect(json.state).to.eql('SP'); pm.expect(json.city).to.eql('São Paulo'); pm.expect(json.district).to.eql('Sé'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CT03 - Fluxo de exceção - CEP inválido",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://cdn.apicep.com/file/apicep/99999-999.json",
+          "protocol": "https",
+          "host": ["cdn", "apicep", "com"],
+          "path": ["file", "apicep", "99999-999.json"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 404', function () { pm.response.to.have.status(404); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

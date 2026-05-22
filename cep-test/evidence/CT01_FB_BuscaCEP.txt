@@ -1,0 +1,27 @@
+CT01 - FB - Teste do fluxo básico
+
+URL: https://cdn.apicep.com/file/apicep/06233-030.json
+
+Resultado esperado:
+- HTTP 200
+- JSON com os campos: status, code, state, city, district, address
+- code = 06233-030
+- state = SP
+- city = Osasco
+- address = Rua Paula Rodrigues
+
+Resultado obtido:
+- HTTP 200
+- JSON retornado:
+  {
+    "code": "06233-030",
+    "state": "SP",
+    "city": "Osasco",
+    "district": "Piratininga",
+    "address": "Rua Paula Rodrigues",
+    "status": 200,
+    "ok": true,
+    "statusText": "ok"
+  }
+
+Status do teste: PASS

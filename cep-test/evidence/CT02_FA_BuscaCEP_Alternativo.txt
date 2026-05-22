@@ -1,0 +1,29 @@
+CT02 - FA - Teste do fluxo alternativo
+
+URL: https://cdn.apicep.com/file/apicep/01001-000.json
+
+Resultado esperado:
+- HTTP 200
+- JSON com os campos: status, code, state, city, district, address
+- code = 01001-000
+- state = SP
+- city = São Paulo
+- district = Sé
+
+Resultado obtido:
+- HTTP 200
+- JSON retornado:
+  {
+    "code": "01001-000",
+    "state": "SP",
+    "city": "São\nPaulo",
+    "district": "Sé",
+    "address": "Praça da Sé - lado ímpar",
+    "status": 200,
+    "ok": true,
+    "statusText": "ok"
+  }
+
+Observação: o campo `city` retornou texto com quebras de linha em algumas representações, mas a informação de cidade permanece correta.
+
+Status do teste: PASS

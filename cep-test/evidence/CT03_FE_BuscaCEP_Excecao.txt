@@ -1,0 +1,13 @@
+CT03 - FE - Teste do fluxo de exceção
+
+URL: https://cdn.apicep.com/file/apicep/99999-999.json
+
+Resultado esperado:
+- HTTP 404
+- CEP não encontrado ou resposta de erro de recurso inexistente
+
+Resultado obtido:
+- HTTP 404
+- Nenhum JSON válido retornado pela API para este CEP inválido
+
+Status do teste: PASS
